@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
+import.meta.env
 
-const API_BASE      = "https://gutendex.com/books"
+const API_BASE   = import.meta.env.VITE_API_URL
+
 const CHARS_PER_PAGE = 3000
 
 const PROXIES = [
