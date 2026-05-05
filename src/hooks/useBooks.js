@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react"
+import { api } from '../config/api'
 import.meta.env
 
-const API_BASE   = import.meta.env.VITE_API_URL
+const API_BASE = import.meta.env.VITE_API_URL;
 
 export function useBooks(searchTerm, topic, page) {
-  const [books,   setBooks]   = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error,   setError]   = useState(null)
-  const [total,   setTotal]   = useState(0)
-  const [nextUrl, setNextUrl] = useState(null)
-  const [prevUrl, setPrevUrl] = useState(null)
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [total, setTotal] = useState(0);
+  const [nextUrl, setNextUrl] = useState(null);
+  const [prevUrl, setPrevUrl] = useState(null);
 
   useEffect(() => {
     /*
@@ -19,38 +20,38 @@ export function useBooks(searchTerm, topic, page) {
       This prevents the React warning:
       "Can't perform state update on unmounted component"
     */
-    let cancelled = false
+    let cancelled = false;
 
     async function fetchBooks() {
-      setLoading(true)
-      setError(null)
+      setLoading(true);
+      setError(null);
 
       try {
         /* Build the URL from current parameters */
-        const params = new URLSearchParams()
-        if (searchTerm) params.set("search", searchTerm)
-        if (topic)      params.set("topic",  topic)
-        if (page > 1)   params.set("page",   page)
+      const params = new URLSearchParams()
+if (searchTerm) params.set('search', searchTerm)
+if (topic)      params.set('topic',  topic)
+if (page > 1)   params.set('page',   page)
 
-        const qs  = params.toString()
-        const url = qs ? `${API_BASE}?${qs}` : API_BASE
+const qs  = params.toString()
+const url = api.getBooks(qs ? `?${qs}` : '')
 
-        const response = await fetch(url)
-        if (!response.ok) throw new Error(`API error: ${response.status}`)
+const response = await fetch(url);
 
-        const data = await response.json()
+        if (!response.ok) throw new Error(`API error: ${response.status}`);
+
+        const data = await response.json();
 
         if (!cancelled) {
-          setBooks(data.results)
-          setTotal(data.count)
-          setNextUrl(data.next)
-          setPrevUrl(data.previous)
+          setBooks(data.results);
+          setTotal(data.count);
+          setNextUrl(data.next);
+          setPrevUrl(data.previous);
         }
-
       } catch (err) {
-        if (!cancelled) setError(err.message)
+        if (!cancelled) setError(err.message);
       } finally {
-        if (!cancelled) setLoading(false)
+        if (!cancelled) setLoading(false);
       }
     }
 
@@ -58,16 +59,15 @@ export function useBooks(searchTerm, topic, page) {
       Debounce — only delay when there is a search term.
       Genre filter and page changes happen instantly.
     */
-    const delay = searchTerm ? 500 : 0
-    const timer = setTimeout(fetchBooks, delay)
+    const delay = searchTerm ? 500 : 0;
+    const timer = setTimeout(fetchBooks, delay);
 
     /* Cleanup — cancel timer and mark as cancelled */
     return () => {
-      cancelled = true
-      clearTimeout(timer)
-    }
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [searchTerm, topic, page]);
 
-  }, [searchTerm, topic, page])
-
-  return { books, loading, error, total, nextUrl, prevUrl }
+  return { books, loading, error, total, nextUrl, prevUrl };
 }

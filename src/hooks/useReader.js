@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { api } from '../config/api'
 import.meta.env
 
 const API_BASE   = import.meta.env.VITE_API_URL
@@ -92,47 +93,36 @@ export function useReader(bookId) {
   }
 }
 
-/* ── Helpers ── */
-
+/*
+  Now fetches through your backend server
+  instead of directly from Gutenberg.
+  No more CORS errors ever.
+*/
 async function fetchBookText(book) {
-  const formats = [
-    "text/plain; charset=utf-8",
-    "text/plain; charset=us-ascii",
-    "text/plain",
-  ]
+  try {
+    const response = await fetch(api.getBookText(book.id))
 
-  const urls = []
-  for (const f of formats) {
-    if (book.formats[f]) urls.push(book.formats[f])
-  }
-  urls.push(`https://www.gutenberg.org/cache/epub/${book.id}/pg${book.id}.txt`)
-  urls.push(`https://www.gutenberg.org/files/${book.id}/${book.id}-0.txt`)
-
-  for (const url of urls) {
-    try {
-      const res = await fetch(url)
-      if (res.ok) {
-        const text = await res.text()
-        if (text.length > 500) return text
-      }
-    } catch { /* try next */ }
-  }
-
-  for (const proxyFn of PROXIES) {
-    for (const url of urls.slice(0, 3)) {
-      try {
-        const res = await fetch(proxyFn(url))
-        if (res.ok) {
-          const text = await res.text()
-          if (text.length > 500) return text
-        }
-      } catch { /* try next */ }
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`)
     }
-  }
 
-  throw new Error(
-    "Could not load book text. Try a different book — some are more accessible than others."
-  )
+    const data = await response.json()
+
+    if (!data.text || data.text.length < 100) {
+      throw new Error('Book text is too short or empty')
+    }
+
+    /*
+      The text is already cleaned by the server.
+      No need to strip Gutenberg headers here.
+    */
+    return data.text
+
+  } catch (error) {
+    throw new Error(
+      `Could not load book text: ${error.message}`
+    )
+  }
 }
 
 function cleanText(raw) {
