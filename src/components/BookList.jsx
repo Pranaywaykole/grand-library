@@ -1,26 +1,25 @@
-import { useState, useEffect } from 'react'
-import BookCard from './BookCard'
-
-const API_BASE = "https://gutendex.com/books";
+import { useState, useEffect } from "react";
+import BookCard from "./BookCard";
+import { bookService } from "../services/bookService";
 
 function BookList({ showNotification }) {
-  const [books,       setBooks]       = useState([]);
-  const [loading,     setLoading]     = useState(true);
-  const [error,       setError]       = useState(null);
-  const [searchTerm,  setSearchTerm]  = useState("");
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const [activeTopic, setActiveTopic] = useState("");
-  const [totalCount,  setTotalCount]  = useState(0);
-  const [nextUrl,     setNextUrl]     = useState(null);
-  const [prevUrl,     setPrevUrl]     = useState(null);
+  const [totalCount, setTotalCount] = useState(0);
+  const [nextUrl, setNextUrl] = useState(null);
+  const [prevUrl, setPrevUrl] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   const topics = [
-    { label: "All",        value: "" },
-    { label: "Mystery",    value: "mystery" },
-    { label: "Romance",    value: "romance" },
-    { label: "Adventure",  value: "adventure" },
-    { label: "Horror",     value: "horror" },
-    { label: "Sci-Fi",     value: "science fiction" },
+    { label: "All", value: "" },
+    { label: "Mystery", value: "mystery" },
+    { label: "Romance", value: "romance" },
+    { label: "Adventure", value: "adventure" },
+    { label: "Horror", value: "horror" },
+    { label: "Sci-Fi", value: "science fiction" },
     { label: "Philosophy", value: "philosophy" },
   ];
 
@@ -30,8 +29,8 @@ function BookList({ showNotification }) {
   */
   function buildUrl() {
     const params = new URLSearchParams();
-    if (searchTerm)  params.set("search", searchTerm);
-    if (activeTopic) params.set("topic",  activeTopic);
+    if (searchTerm) params.set("search", searchTerm);
+    if (activeTopic) params.set("topic", activeTopic);
     if (currentPage > 1) params.set("page", currentPage);
     const qs = params.toString();
     return qs ? `${API_BASE}?${qs}` : API_BASE;
@@ -50,9 +49,11 @@ function BookList({ showNotification }) {
       setError(null);
 
       try {
-        const response = await fetch(buildUrl());
-        if (!response.ok) throw new Error(`API error: ${response.status}`);
-        const data = await response.json();
+        const data = await bookService.getBooks({
+          search: searchTerm,
+          topic: activeTopic,
+          page: currentPage,
+        });
 
         if (!cancelled) {
           setBooks(data.results);
@@ -60,7 +61,6 @@ function BookList({ showNotification }) {
           setNextUrl(data.next);
           setPrevUrl(data.previous);
         }
-
       } catch (err) {
         if (!cancelled) setError(err.message);
       } finally {
@@ -84,7 +84,6 @@ function BookList({ showNotification }) {
       cancelled = true;
       clearTimeout(timer);
     };
-
   }, [searchTerm, activeTopic, currentPage]);
 
   function handleTopicChange(topic) {
@@ -110,15 +109,17 @@ function BookList({ showNotification }) {
         <h2>Featured Books</h2>
         <p className="section-subtitle">Loading from Project Gutenberg...</p>
         <div className="books-container">
-          {Array(8).fill(0).map((_, i) => (
-            <div key={i} className="book-card skeleton">
-              <div className="skeleton-img" />
-              <div className="skeleton-text" />
-              <div className="skeleton-text short" />
-              <div className="skeleton-badge" />
-              <div className="skeleton-btn" />
-            </div>
-          ))}
+          {Array(8)
+            .fill(0)
+            .map((_, i) => (
+              <div key={i} className="book-card skeleton">
+                <div className="skeleton-img" />
+                <div className="skeleton-text" />
+                <div className="skeleton-text short" />
+                <div className="skeleton-badge" />
+                <div className="skeleton-btn" />
+              </div>
+            ))}
         </div>
       </section>
     );
@@ -134,7 +135,7 @@ function BookList({ showNotification }) {
           <p className="error-message">{error}</p>
           <button
             className="retry-btn"
-            onClick={() => setCurrentPage(p => p)}
+            onClick={() => setCurrentPage((p) => p)}
           >
             Try Again
           </button>
@@ -153,9 +154,7 @@ function BookList({ showNotification }) {
       </p>
 
       {/* Results count */}
-      <p className="results-count">
-        {totalCount.toLocaleString()} books found
-      </p>
+      <p className="results-count">{totalCount.toLocaleString()} books found</p>
 
       {/* Search bar */}
       <div className="search-container">
@@ -170,7 +169,7 @@ function BookList({ showNotification }) {
 
       {/* Genre filter buttons */}
       <div className="genre-filters">
-        {topics.map(topic => (
+        {topics.map((topic) => (
           <button
             key={topic.value}
             className={`genre-filter ${activeTopic === topic.value ? "active" : ""}`}
@@ -190,12 +189,8 @@ function BookList({ showNotification }) {
       ) : (
         /* Books grid */
         <div className="books-container">
-          {books.map(book => (
-            <BookCard
-              key={book.id}
-              book={book}
-              onReadNow={handleReadNow}
-            />
+          {books.map((book) => (
+            <BookCard key={book.id} book={book} onReadNow={handleReadNow} />
           ))}
         </div>
       )}
@@ -207,7 +202,7 @@ function BookList({ showNotification }) {
             <button
               className="page-btn"
               disabled={!prevUrl}
-              onClick={() => setCurrentPage(p => p - 1)}
+              onClick={() => setCurrentPage((p) => p - 1)}
             >
               ← Previous
             </button>
@@ -217,16 +212,15 @@ function BookList({ showNotification }) {
             <button
               className="page-btn"
               disabled={!nextUrl}
-              onClick={() => setCurrentPage(p => p + 1)}
+              onClick={() => setCurrentPage((p) => p + 1)}
             >
               Next →
             </button>
           </div>
         </div>
       )}
-
     </section>
   );
 }
 
-export default BookList
+export default BookList;
