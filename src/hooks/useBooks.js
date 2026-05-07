@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { api } from '../config/api'
+import { bookService } from '../services/bookService'
 import.meta.env
 
 const API_BASE = import.meta.env.VITE_API_URL;
@@ -13,61 +14,37 @@ export function useBooks(searchTerm, topic, page) {
   const [prevUrl, setPrevUrl] = useState(null);
 
   useEffect(() => {
-    /*
-      cancelled flag prevents a stale fetch from
-      updating state after the component unmounts
-      or the effect re-runs with new dependencies.
-      This prevents the React warning:
-      "Can't perform state update on unmounted component"
-    */
-    let cancelled = false;
+  let cancelled = false
 
-    async function fetchBooks() {
-      setLoading(true);
-      setError(null);
+  async function loadBooks() {
+    setLoading(true)
+    setError(null)
 
-      try {
-        /* Build the URL from current parameters */
-      const params = new URLSearchParams()
-if (searchTerm) params.set('search', searchTerm)
-if (topic)      params.set('topic',  topic)
-if (page > 1)   params.set('page',   page)
+    try {
+      const data = await bookService.getBooks({
+        search: searchTerm,
+        topic,
+        page,
+      })
 
-const qs  = params.toString()
-const url = api.getBooks(qs ? `?${qs}` : '')
-
-const response = await fetch(url);
-
-        if (!response.ok) throw new Error(`API error: ${response.status}`);
-
-        const data = await response.json();
-
-        if (!cancelled) {
-          setBooks(data.results);
-          setTotal(data.count);
-          setNextUrl(data.next);
-          setPrevUrl(data.previous);
-        }
-      } catch (err) {
-        if (!cancelled) setError(err.message);
-      } finally {
-        if (!cancelled) setLoading(false);
+      if (!cancelled) {
+        setBooks(data.results)
+        setTotal(data.count)
+        setNextUrl(data.next)
+        setPrevUrl(data.previous)
       }
+    } catch (err) {
+      if (!cancelled) setError(err.message)
+    } finally {
+      if (!cancelled) setLoading(false)
     }
+  }
 
-    /*
-      Debounce — only delay when there is a search term.
-      Genre filter and page changes happen instantly.
-    */
-    const delay = searchTerm ? 500 : 0;
-    const timer = setTimeout(fetchBooks, delay);
+  const delay  = searchTerm ? 500 : 0
+  const timer  = setTimeout(loadBooks, delay)
+  return () => { cancelled = true; clearTimeout(timer) }
 
-    /* Cleanup — cancel timer and mark as cancelled */
-    return () => {
-      cancelled = true;
-      clearTimeout(timer);
-    };
-  }, [searchTerm, topic, page]);
+}, [searchTerm, topic, page])
 
   return { books, loading, error, total, nextUrl, prevUrl };
 }

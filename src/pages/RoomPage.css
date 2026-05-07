@@ -1,18 +1,30 @@
 /* ================================
    RESET & BASE
    ================================ */
+   /*
+  These styles only apply when the room page is active.
+  We scope them to .room-page so they don't affect
+  the homepage scrolling.
+*/
+.room-page {
+  overflow: hidden;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+
 body {
   font-family: "Lato", sans-serif;
   background-color: #0a0a14;
   color: #ccc;
   height: 100vh;
-  overflow: hidden;
   user-select: none;
 }
 

@@ -1,37 +1,36 @@
-import NavBar           from '../components/NavBar'
-import Hero             from '../components/Hero'
-import BookList         from '../components/BookList'
-import RoomSection      from '../components/RoomSection'
-import CharacterSection from '../components/CharacteSection'
-import Footer           from '../components/Footer'
+import { useLibrary } from "../context/LibraryContext";
+import LoadingScreen from "../components/LoadingScreen";
+import NavBar from "../components/NavBar";
+import Hero from "../components/Hero";
+import BookList from "../components/BookList";
+import CharacterSection from "../components/CharacterSection";
+import Footer from "../components/Footer";
+import RoomSection from "../components/RoomSection";
+import ReadingHistory from "../components/ReadingHistory";
+import FloatingCharacter from "../components/FloatingCharacter";
 
-function HomePage({ chosenCharacter, onCharacterSelect, showNotification }) {
+function HomePage() {
+  const { authLoading } = useLibrary();
+
+  /*
+    Show loading screen while we verify
+    if the user is already logged in.
+    This prevents a flash of logged-out state.
+  */
+  if (authLoading) return <LoadingScreen />;
+
   return (
     <div className="app">
-
-      <NavBar chosenCharacter={chosenCharacter} />
-
+      <NavBar />
       <Hero />
-
-      <BookList showNotification={showNotification} />
-
+      <ReadingHistory />
+      <BookList />
       <RoomSection />
-
-      <CharacterSection
-        chosenCharacter={chosenCharacter}
-        onCharacterSelect={onCharacterSelect}
-      />
-
+      <CharacterSection />
       <Footer />
-
-      {chosenCharacter.name && (
-        <div className="floating-character">
-          {chosenCharacter.emoji} {chosenCharacter.name}
-        </div>
-      )}
-
+      <FloatingCharacter />
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

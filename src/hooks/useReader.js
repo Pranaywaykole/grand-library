@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import { api } from '../config/api'
+import { userService } from '../services/userService'
+import { bookService  } from '../services/bookService'
+import { authService  } from '../services/authService'
 import.meta.env
 
 const API_BASE   = import.meta.env.VITE_API_URL
@@ -71,21 +74,20 @@ export function useReader(bookId) {
   }, [bookId])
 
   function goToNext() {
-    if (currentPage < pages.length - 1) {
-      const next = currentPage + 1
-      setCurrentPage(next)
-      localStorage.setItem(`progress_${bookId}`, next)
-    }
-  }
+  if (currentPage < pages.length - 1) {
+    const next = currentPage + 1
+    setCurrentPage(next)
 
-  function goToPrev() {
-    if (currentPage > 0) {
-      const prev = currentPage - 1
-      setCurrentPage(prev)
-      localStorage.setItem(`progress_${bookId}`, prev)
+    /* Save to database if logged in */
+    if (authService.isLoggedIn() && book) {
+      userService.saveProgress(bookId, next, pages.length, book.title)
+        .catch(err => console.error('Failed to save progress:', err))
     }
-  }
 
+    /* Always save to localStorage as backup */
+    localStorage.setItem(`progress_${bookId}`, next)
+  }
+}
   return {
     book, pages, currentPage,
     loading, error, loadingText,
@@ -99,30 +101,29 @@ export function useReader(bookId) {
   No more CORS errors ever.
 */
 async function fetchBookText(book) {
-  try {
-    const response = await fetch(api.getBookText(book.id))
+  setLoadingText("Loading full book text...")
+const textData = await bookService.getBookText(bookId)
 
-    if (!response.ok) {
-      throw new Error(`Server error: ${response.status}`)
+if (!cancelled) {
+  const allPages = splitPages(textData.text)
+  setPages(allPages)
+
+  /* Restore progress from database if logged in */
+  if (authService.isLoggedIn()) {
+    try {
+      const progressData = await userService.getProgress(bookId)
+      if (progressData.currentPage > 0) {
+        setCurrentPage(
+          Math.min(progressData.currentPage, allPages.length - 1)
+        )
+      }
+    } catch {
+      /* Fall back to localStorage */
+      const saved = localStorage.getItem(`progress_${bookId}`)
+      if (saved) setCurrentPage(parseInt(saved))
     }
-
-    const data = await response.json()
-
-    if (!data.text || data.text.length < 100) {
-      throw new Error('Book text is too short or empty')
-    }
-
-    /*
-      The text is already cleaned by the server.
-      No need to strip Gutenberg headers here.
-    */
-    return data.text
-
-  } catch (error) {
-    throw new Error(
-      `Could not load book text: ${error.message}`
-    )
   }
+}
 }
 
 function cleanText(raw) {

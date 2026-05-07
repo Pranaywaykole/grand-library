@@ -41,7 +41,7 @@ function CharacterSection({ chosenCharacter, onCharacterSelect }) {
           <div
             key={char.id}
             className={`character-card ${char.cardClass} ${
-              chosenCharacter.name === char.name ? "selected-character" : ""
+              chosenCharacter?.name === char.name ? "selected-character" : ""
             }`}
             onClick={() => onCharacterSelect({
               name:  char.name,
