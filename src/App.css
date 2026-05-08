@@ -20,12 +20,12 @@ html {
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   background-color: #f5f0e8;
   color: #2c2c2c;
   line-height: 1.6;
-overflow-x: hidden;  /* only block horizontal scroll */
-  overflow-y: auto;    /* always allow vertical scroll */
+  overflow-x: hidden; /* only block horizontal scroll */
+  overflow-y: auto; /* always allow vertical scroll */
   min-height: 100vh;
 }
 
@@ -38,38 +38,74 @@ overflow-x: hidden;  /* only block horizontal scroll */
    KEYFRAME ANIMATIONS
    ================================ */
 @keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes float {
-  from { transform: translateY(0px); }
-  to   { transform: translateY(-12px); }
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-12px);
+  }
 }
 
 @keyframes pulse {
-  0%   { transform: scale(1);   opacity: 1; }
-  50%  { transform: scale(1.4); opacity: 0.6; }
-  100% { transform: scale(1);   opacity: 1; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes shimmer {
-  0%   { opacity: 0.7; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.7; }
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
 }
 
 @keyframes slideInRight {
-  from { opacity: 0; transform: translateX(60px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes borderGlow {
-  0%   { box-shadow: 0 0 5px rgba(201,168,76,0.2); }
-  50%  { box-shadow: 0 0 20px rgba(201,168,76,0.6); }
-  100% { box-shadow: 0 0 5px rgba(201,168,76,0.2); }
+  0% {
+    box-shadow: 0 0 5px rgba(201, 168, 76, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(201, 168, 76, 0.2);
+  }
 }
-
 
 /* ================================
    NAVIGATION — MOBILE FIRST
@@ -95,7 +131,7 @@ nav {
 
 .nav-logo {
   color: #c9a84c;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -124,7 +160,9 @@ nav {
   transition: color 0.3s ease;
 }
 
-.nav-links a:hover { color: white; }
+.nav-links a:hover {
+  color: white;
+}
 
 /*
   At 768px and above the nav switches to the classic
@@ -145,11 +183,14 @@ nav {
     gap: 35px;
   }
 
-  .nav-logo { font-size: 1.375rem; }
+  .nav-logo {
+    font-size: 1.375rem;
+  }
 
-  .nav-links a { font-size: 0.875rem; }
+  .nav-links a {
+    font-size: 0.875rem;
+  }
 }
-
 
 /* ================================
    HERO SECTION — MOBILE FIRST
@@ -161,7 +202,12 @@ nav {
 */
 .hero {
   background-color: #1a1a2e;
-  background-image: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background-image: linear-gradient(
+    135deg,
+    #1a1a2e 0%,
+    #16213e 50%,
+    #0f3460 100%
+  );
   min-height: 70vh;
   display: flex;
   justify-content: center;
@@ -185,7 +231,7 @@ nav {
   This prevents huge text that overflows on small screens.
 */
 .hero-content h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 2rem;
   font-weight: 700;
   color: #c9a84c;
@@ -235,7 +281,9 @@ nav {
 .btn-primary {
   background-color: #c9a84c;
   color: #1a1a2e;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .btn-primary:hover {
@@ -260,11 +308,18 @@ nav {
   buttons go side by side and auto-width instead of full width.
 */
 @media (min-width: 768px) {
-  .hero { min-height: 90vh; padding: 60px 20px; }
+  .hero {
+    min-height: 90vh;
+    padding: 60px 20px;
+  }
 
-  .hero-content h1 { font-size: 3.625rem; }
+  .hero-content h1 {
+    font-size: 3.625rem;
+  }
 
-  .hero-content p  { font-size: 1.25rem; }
+  .hero-content p {
+    font-size: 1.25rem;
+  }
 
   .hero-buttons {
     flex-direction: row;
@@ -278,7 +333,6 @@ nav {
     padding: 14px 35px;
   }
 }
-
 
 /* ================================
    STATS BAR — MOBILE FIRST
@@ -307,16 +361,22 @@ nav {
 }
 
 .stat-number {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.75rem;
   color: #c9a84c;
   font-weight: 700;
   animation: shimmer 2.5s ease-in-out infinite;
 }
 
-.stat:nth-child(1) .stat-number { animation-delay: 0s; }
-.stat:nth-child(2) .stat-number { animation-delay: 0.4s; }
-.stat:nth-child(3) .stat-number { animation-delay: 0.8s; }
+.stat:nth-child(1) .stat-number {
+  animation-delay: 0s;
+}
+.stat:nth-child(2) .stat-number {
+  animation-delay: 0.4s;
+}
+.stat:nth-child(3) .stat-number {
+  animation-delay: 0.8s;
+}
 
 .stat-label {
   font-size: 0.7rem;
@@ -327,11 +387,16 @@ nav {
 }
 
 @media (min-width: 768px) {
-  .stats-bar   { padding: 30px 60px; }
-  .stat-number { font-size: 2.25rem; }
-  .stat-label  { font-size: 0.8125rem; }
+  .stats-bar {
+    padding: 30px 60px;
+  }
+  .stat-number {
+    font-size: 2.25rem;
+  }
+  .stat-label {
+    font-size: 0.8125rem;
+  }
 }
-
 
 /* ================================
    BOOKS SECTION — MOBILE FIRST
@@ -350,7 +415,7 @@ nav {
 }
 
 .books-section h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.75rem;
   color: #1a1a2e;
   margin-bottom: 8px;
@@ -381,25 +446,35 @@ nav {
   width: 100%;
   max-width: 320px;
   text-align: center;
-  box-shadow: 0px 4px 20px rgba(0,0,0,0.07);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.07);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   opacity: 0;
   animation: fadeSlideUp 0.6s ease forwards;
 }
 
-.book-card:nth-child(1) { animation-delay: 0.1s; }
-.book-card:nth-child(2) { animation-delay: 0.25s; }
-.book-card:nth-child(3) { animation-delay: 0.4s; }
-.book-card:nth-child(4) { animation-delay: 0.55s; }
+.book-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.book-card:nth-child(2) {
+  animation-delay: 0.25s;
+}
+.book-card:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.book-card:nth-child(4) {
+  animation-delay: 0.55s;
+}
 
 .book-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0px 15px 35px rgba(0,0,0,0.12);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 .book-card img {
@@ -410,7 +485,7 @@ nav {
 }
 
 .book-card h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1rem;
   color: #1a1a2e;
 }
@@ -446,8 +521,14 @@ nav {
   z-index: 1;
 }
 
-.new-badge     { background-color: #2ecc71; color: white; }
-.classic-badge { background-color: #9b59b6; color: white; }
+.new-badge {
+  background-color: #2ecc71;
+  color: white;
+}
+.classic-badge {
+  background-color: #9b59b6;
+  color: white;
+}
 
 .book-card button {
   background-color: #1a1a2e;
@@ -476,22 +557,40 @@ nav {
   At 1024px we get the original desktop layout with fixed widths.
 */
 @media (min-width: 480px) {
-  .book-card { width: calc(50% - 10px); max-width: none; }
+  .book-card {
+    width: calc(50% - 10px);
+    max-width: none;
+  }
 }
 
 @media (min-width: 768px) {
-  .books-section { margin: 80px auto; padding: 0 30px; }
-  .books-section h2 { font-size: 2.5rem; }
-  .section-subtitle { font-size: 1rem; margin-bottom: 50px; }
-  .books-container  { gap: 30px; }
-  .book-card        { width: calc(33.333% - 20px); }
-  .book-card button { width: auto; }
+  .books-section {
+    margin: 80px auto;
+    padding: 0 30px;
+  }
+  .books-section h2 {
+    font-size: 2.5rem;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 50px;
+  }
+  .books-container {
+    gap: 30px;
+  }
+  .book-card {
+    width: calc(33.333% - 20px);
+  }
+  .book-card button {
+    width: auto;
+  }
 }
 
 @media (min-width: 1024px) {
-  .book-card { width: 210px; }
+  .book-card {
+    width: 210px;
+  }
 }
-
 
 /* ================================
    ROOMS SECTION — MOBILE FIRST
@@ -504,7 +603,7 @@ nav {
 }
 
 .rooms-section h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.75rem;
   color: #c9a84c;
   margin-bottom: 8px;
@@ -536,7 +635,9 @@ nav {
   padding: 30px 24px;
   width: 100%;
   text-align: center;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -555,7 +656,7 @@ nav {
 }
 
 .room-card h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.2rem;
   color: #c9a84c;
 }
@@ -567,80 +668,112 @@ nav {
 }
 
 @media (min-width: 600px) {
-  .room-card { width: calc(50% - 10px); }
+  .room-card {
+    width: calc(50% - 10px);
+  }
 }
 
 @media (min-width: 768px) {
-  .rooms-section { padding: 80px 30px; }
-  .rooms-section h2 { font-size: 2.5rem; }
+  .rooms-section {
+    padding: 80px 30px;
+  }
+  .rooms-section h2 {
+    font-size: 2.5rem;
+  }
 }
 
 @media (min-width: 1024px) {
-  .room-card { width: 220px; }
+  .room-card {
+    width: 220px;
+  }
 }
-
 
 /* ================================
    CHARACTER SECTION — MOBILE FIRST
    ================================ */
 
-.character-section {
+/* .character-section {
   max-width: 1200px;
   margin: 50px auto;
   padding: 0 20px;
   text-align: center;
-}
-
+} */
+/* 
 .character-section h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.75rem;
   color: #1a1a2e;
   margin-bottom: 8px;
-}
+} */
 
-.character-preview-container {
+/* .character-preview-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 24px;
   justify-content: center;
   margin-top: 40px;
-}
+} */
 
-.character-card {
+/* .character-card {
   background-color: white;
   border-radius: 20px;
   padding: 32px 24px;
   width: 260px;
   min-width: 220px;
   text-align: center;
-  box-shadow: 0px 4px 20px rgba(0,0,0,0.07);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.07);
   position: relative;
- overflow-x: hidden;
+  overflow-x: hidden;
   border: 2px solid transparent;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
-}
+} */
 
-.character-card:hover {
+/* .character-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0px 15px 35px rgba(0,0,0,0.12);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 .character-avatar {
-  font-size: 4rem;
-  line-height: 1;
-  display: inline-block;
-  animation: float 3s ease-in-out infinite alternate;
+  position: relative;
+
+  z-index: 5;
+
+  font-size: 72px;
+
+  margin-bottom: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
 }
 
-.character-card:nth-child(1) .character-avatar { animation-delay: 0s; }
-.character-card:nth-child(2) .character-avatar { animation-delay: 0.5s; }
-.character-card:nth-child(3) .character-avatar { animation-delay: 1s; }
+
+.scholar-card .character-avatar,
+.detective-card .character-avatar,
+.wanderer-card .character-avatar {
+  animation: floatAvatar 4s ease-in-out infinite;
+}
+
+.character-card:nth-child(1) .character-avatar {
+  animation-delay: 0s;
+}
+.character-card:nth-child(2) .character-avatar {
+  animation-delay: 0.5s;
+}
+.character-card:nth-child(3) .character-avatar {
+  animation-delay: 1s;
+}
 
 .character-status {
   position: absolute;
@@ -657,15 +790,21 @@ nav {
   animation: pulse 2s ease-in-out infinite;
 }
 
-.character-status.offline { background-color: #999; }
+.character-status.offline {
+  background-color: #999;
+}
 
 .character-card h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.375rem;
   color: #1a1a2e;
 }
 
-.character-card p { font-size: 0.875rem; color: #888; line-height: 1.7; }
+.character-card p {
+  font-size: 0.875rem;
+  color: #888;
+  line-height: 1.7;
+}
 
 .character-tag {
   font-size: 0.75rem;
@@ -675,10 +814,14 @@ nav {
 }
 
 @media (min-width: 768px) {
-  .character-section { margin: 80px auto; padding: 0 30px; }
-  .character-section h2 { font-size: 2.5rem; }
-}
-
+  .character-section {
+    margin: 80px auto;
+    padding: 0 30px;
+  }
+  .character-section h2 {
+    font-size: 2.5rem;
+  }
+} */
 
 /* ================================
    CHARACTER CARDS — BASE SETUP
@@ -686,7 +829,7 @@ nav {
    and overflow hidden so effects
    stay contained inside the card
    ================================ */
-  /* .character-card {
+/* .character-card {
   position: absolute;
   overflow: hidden;
   border: 2px solid transparent;
@@ -703,7 +846,7 @@ nav {
    ================================ */
 
 /* The full card green flash overlay */
-.green-flash {
+/* .green-flash {
   position: absolute;
   inset: 0;
   background: rgba(62, 207, 122, 0);
@@ -711,10 +854,10 @@ nav {
   z-index: 3;
   border-radius: var(--border-radius-lg, 20px);
   transition: none;
-}
+} */
 
 /* The glowing magic bolt itself */
-.magic-bolt {
+/* .magic-bolt {
   position: absolute;
   width: 14px;
   height: 14px;
@@ -727,25 +870,25 @@ nav {
   opacity: 0;
   z-index: 5;
   pointer-events: none;
-}
+} */
 
 /* The three trailing particles behind the bolt */
-.trail {
+/* .trail {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   z-index: 4;
   opacity: 0;
-}
+} */
 
 /* Activate effects on hover */
-.scholar-card:hover .avatar,
+/* .scholar-card:hover .avatar,
 .scholar-card:hover .character-avatar {
   transform: rotate(-15deg) scale(1.1);
   transition: transform 0.3s ease;
-}
+} */
 
-.scholar-card:hover .magic-bolt {
+/* .scholar-card:hover .magic-bolt {
   animation: scholarBoltFire 0.9s ease-out forwards;
 }
 
@@ -782,10 +925,10 @@ nav {
 
 .scholar-card:hover {
   border-color: #3ecf7a;
-}
+} */
 
 /* Bolt shoots diagonally down and to the right */
-@keyframes scholarBoltFire {
+/* @keyframes scholarBoltFire {
   0% {
     transform: translateX(-50%) scale(0) translate(0px, 0px);
     opacity: 0;
@@ -798,10 +941,10 @@ nav {
     transform: translateX(90px) scale(0.3) translate(0px, 100px);
     opacity: 0;
   }
-}
+} */
 
 /* Trailing particles fade in then shrink away */
-@keyframes scholarTrailFade {
+/* @keyframes scholarTrailFade {
   0% {
     transform: scale(0);
     opacity: 0;
@@ -814,16 +957,15 @@ nav {
     transform: scale(0.1);
     opacity: 0;
   }
-}
+} */
 
 /* The whole card flashes with green light then fades */
-@keyframes scholarPageFlash {
+/* @keyframes scholarPageFlash {
   0%   { background: rgba(62, 207, 122, 0); }
   25%  { background: rgba(62, 207, 122, 0.30); }
   60%  { background: rgba(62, 207, 122, 0.15); }
   100% { background: rgba(62, 207, 122, 0); }
-}
-
+} */
 
 /* ================================
    DETECTIVE — BULLET EFFECT
@@ -833,7 +975,7 @@ nav {
    ================================ */
 
 /* Orange muzzle flash at gun barrel */
-.muzzle {
+/* .muzzle {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -846,14 +988,14 @@ nav {
   opacity: 0;
   z-index: 5;
   pointer-events: none;
-}
+} */
 
 /*
   The bullet — styled as a metallic capsule shape.
   Starts off the left edge and travels right toward viewer.
   Gradient gives it a shiny metallic look.
 */
-.bullet {
+/* .bullet {
   position: absolute;
   width: 26px;
   height: 8px;
@@ -864,10 +1006,10 @@ nav {
   opacity: 0;
   z-index: 5;
   pointer-events: none;
-}
+} */
 
 /* Grey smoke cloud rises from barrel after shot */
-.smoke {
+/* .smoke {
   position: absolute;
   width: 22px;
   height: 22px;
@@ -879,47 +1021,47 @@ nav {
   opacity: 0;
   z-index: 4;
   pointer-events: none;
-}
+} */
 
 /* Avatar leans back slightly as if recoiling */
-.detective-card:hover .avatar,
-.detective-card:hover .character-avatar {
+/* .detective-card:hover .avatar, */
+/* .detective-card:hover .character-avatar {
   animation: detectiveRecoil 0.4s ease-out forwards;
-}
+} */
 
-.detective-card:hover .muzzle {
+/* .detective-card:hover .muzzle {
   animation: detectiveMuzzleFlash 0.18s ease-out forwards;
-}
+} */
 
-.detective-card:hover .bullet {
+/* .detective-card:hover .bullet {
   animation: detectiveBulletTravel 0.6s cubic-bezier(0.1, 0, 0.9, 1) 0.08s forwards;
-}
+} */
 
-.detective-card:hover .smoke {
+/* .detective-card:hover .smoke {
   animation: detectiveSmokePuff 0.8s ease-out 0.1s forwards;
-}
+} */
 
-.detective-card:hover {
+/* .detective-card:hover {
   border-color: #e74c3c;
-}
+} */
 
 /* Recoil — avatar jerks back then settles */
-@keyframes detectiveRecoil {
+/* @keyframes detectiveRecoil {
   0%   { transform: translateX(0px) rotate(0deg); }
   20%  { transform: translateX(-8px) rotate(-4deg); }
   50%  { transform: translateX(-4px) rotate(-2deg); }
   100% { transform: translateX(0px) rotate(0deg); }
-}
+} */
 
 /* Muzzle flash blooms bright then vanishes instantly */
-@keyframes detectiveMuzzleFlash {
+/* @keyframes detectiveMuzzleFlash {
   0%   { transform: scale(0); opacity: 1; }
   50%  { transform: scale(1.6); opacity: 1; }
   100% { transform: scale(0.2); opacity: 0; }
-}
+} */
 
 /* Bullet travels from left side to beyond the right edge */
-@keyframes detectiveBulletTravel {
+/* @keyframes detectiveBulletTravel {
   0% {
     left: -30px;
     opacity: 1;
@@ -937,10 +1079,10 @@ nav {
     opacity: 0;
     transform: scaleX(0.5) scaleY(0.5);
   }
-}
+} */
 
 /* Smoke rises and expands then fades */
-@keyframes detectiveSmokePuff {
+/* @keyframes detectiveSmokePuff {
   0% {
     transform: scale(0) translateY(0px);
     opacity: 0.8;
@@ -953,8 +1095,7 @@ nav {
     transform: scale(3) translateY(-18px);
     opacity: 0;
   }
-}
-
+} */
 
 /* ================================
    WANDERER — ROAMING EFFECT
@@ -964,7 +1105,7 @@ nav {
    ================================ */
 
 /* Each flying page looks like a tiny open book */
-.page {
+/* .page {
   position: absolute;
   width: 15px;
   height: 19px;
@@ -978,10 +1119,10 @@ nav {
   z-index: 5;
   pointer-events: none;
  overflow-x: hidden;
-}
+} */
 
 /* Lines on the page to look like text */
-.page::before {
+/* .page::before {
   content: '';
   display: block;
   width: 80%;
@@ -993,10 +1134,10 @@ nav {
     0 6px 0 #bbb,
     0 9px 0 #bbb,
     0 12px 0 #bbb;
-}
+} */
 
 /* Glowing footstep dots that appear one by one */
-.step {
+/* .step {
   position: absolute;
   width: 9px;
   height: 5px;
@@ -1006,72 +1147,72 @@ nav {
   opacity: 0;
   pointer-events: none;
   z-index: 4;
-}
+} */
 
 /* Avatar sways continuously while hovering */
-.wanderer-card:hover .avatar,
-.wanderer-card:hover .character-avatar {
+/* .wanderer-card:hover .avatar, */
+/* .wanderer-card:hover .character-avatar {
   animation: wandererSway 1s ease-in-out infinite alternate;
-}
+} */
 
 /* Page 1 — flies to upper left */
-.wanderer-card:hover .page1 {
+/* .wanderer-card:hover .page1 {
   animation: wandererPageLeft 1s ease-out 0.05s forwards;
-}
+} */
 
 /* Page 2 — flies straight up and to the right */
-.wanderer-card:hover .page2 {
+/* .wanderer-card:hover .page2 {
   animation: wandererPageRight 1s ease-out 0.2s forwards;
-}
+} */
 
 /* Page 3 — flies upward almost straight */
-.wanderer-card:hover .page3 {
+/* .wanderer-card:hover .page3 {
   animation: wandererPageUp 1s ease-out 0.35s forwards;
-}
+} */
 
 /* Footsteps appear left to right in sequence */
-.wanderer-card:hover .step1 {
+/* .wanderer-card:hover .step1 {
   animation: wandererStep 0.6s ease-out 0.15s forwards;
   bottom: 30px;
   left: 30px;
-}
+} */
 
-.wanderer-card:hover .step2 {
+/* .wanderer-card:hover .step2 {
   animation: wandererStep 0.6s ease-out 0.35s forwards;
   bottom: 24px;
   left: 55px;
-}
+} */
 
-.wanderer-card:hover .step3 {
+/* .wanderer-card:hover .step3 {
   animation: wandererStep 0.6s ease-out 0.55s forwards;
   bottom: 30px;
   left: 80px;
-}
+} */
 
-.wanderer-card:hover .step4 {
+/* .wanderer-card:hover .step4 {
   animation: wandererStep 0.6s ease-out 0.75s forwards;
   bottom: 24px;
   left: 105px;
-}
-
+} */
+/* 
 .wanderer-card:hover .step5 {
   animation: wandererStep 0.6s ease-out 0.95s forwards;
   bottom: 30px;
   left: 130px;
-}
+} */
 
-.wanderer-card:hover {
+/* .wanderer-card:hover {
   border-color: #8e44ad;
-}
+} */
 
 /* Continuous gentle swaying — left to right */
-@keyframes wandererSway {
+/* @keyframes wandererSway {
   0%   { transform: translateX(-10px) rotate(-6deg); }
   100% { transform: translateX(10px) rotate(6deg); }
-}
+} */
 
 /* Page flies to the upper left */
-@keyframes wandererPageLeft {
+/* @keyframes wandererPageLeft {
   0% {
     transform: translateX(-50%) scale(0) rotate(0deg);
     opacity: 0;
@@ -1087,10 +1228,10 @@ nav {
     transform: translateX(-130px) scale(0.6) rotate(-55deg);
     top: -20px;
   }
-}
+} */
 
 /* Page flies to the upper right */
-@keyframes wandererPageRight {
+/* @keyframes wandererPageRight {
   0% {
     transform: translateX(-50%) scale(0) rotate(0deg);
     opacity: 0;
@@ -1106,10 +1247,10 @@ nav {
     transform: translateX(80px) scale(0.5) rotate(38deg);
     top: -18px;
   }
-}
+} */
 
 /* Page flies almost straight upward */
-@keyframes wandererPageUp {
+/* @keyframes wandererPageUp {
   0% {
     transform: translateX(-50%) scale(0) rotate(0deg);
     opacity: 0;
@@ -1125,10 +1266,10 @@ nav {
     transform: translateX(-25px) scale(0.4) rotate(-22deg);
     top: -25px;
   }
-}
+} */
 
 /* Each footstep glows in then fades out */
-@keyframes wandererStep {
+/* @keyframes wandererStep {
   0% {
     transform: scale(0);
     opacity: 0;
@@ -1141,8 +1282,7 @@ nav {
     transform: scale(0.9);
     opacity: 0;
   }
-}
-
+} */
 
 /* ================================
    FOOTER — MOBILE FIRST
@@ -1167,14 +1307,18 @@ footer {
 }
 
 .footer-brand span {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.25rem;
   color: #c9a84c;
   display: block;
   margin-bottom: 8px;
 }
 
-.footer-brand p { color: #555; font-size: 0.875rem; max-width: 280px; }
+.footer-brand p {
+  color: #555;
+  font-size: 0.875rem;
+  max-width: 280px;
+}
 
 .footer-links {
   display: flex;
@@ -1191,7 +1335,9 @@ footer {
   transition: color 0.3s ease;
 }
 
-.footer-links a:hover { color: #c9a84c; }
+.footer-links a:hover {
+  color: #c9a84c;
+}
 
 .footer-bottom {
   color: #333;
@@ -1206,7 +1352,9 @@ footer {
   brand left, links right.
 */
 @media (min-width: 768px) {
-  footer { padding: 50px 60px 25px; }
+  footer {
+    padding: 50px 60px 25px;
+  }
 
   .footer-content {
     flex-direction: row;
@@ -1215,9 +1363,10 @@ footer {
     text-align: left;
   }
 
-  .footer-links { justify-content: flex-end; }
+  .footer-links {
+    justify-content: flex-end;
+  }
 }
-
 
 /* ================================
    FLOATING CHARACTER INDICATOR
@@ -1248,7 +1397,9 @@ footer {
   max-width: calc(100vw - 40px);
 }
 
-.floating-character:hover { transform: translateY(-3px); }
+.floating-character:hover {
+  transform: translateY(-3px);
+}
 
 @media (min-width: 768px) {
   .floating-character {
@@ -1271,7 +1422,7 @@ footer {
   max-width: 500px;
   padding: 14px 24px;
   font-size: 15px;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   border: 2px solid #ddd;
   border-radius: 30px;
   outline: none;
@@ -1368,7 +1519,7 @@ footer {
 }
 
 .modal-content h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 28px;
   color: #1a1a2e;
   margin-bottom: 8px;
@@ -1412,8 +1563,14 @@ footer {
 }
 
 @keyframes fadeOut {
-  from { opacity: 1; transform: translateX(-50%) translateY(0); }
-  to   { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
 }
 
 /* ================================
@@ -1484,9 +1641,15 @@ footer {
 }
 
 @keyframes skeletonPulse {
-  0%   { background-color: #e0e0e0; }
-  50%  { background-color: #f0f0f0; }
-  100% { background-color: #e0e0e0; }
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
 }
 
 /* ================================
@@ -1499,9 +1662,20 @@ footer {
   color: #888;
 }
 
-.error-icon  { font-size: 48px; margin-bottom: 16px; }
-.error-title { font-size: 20px; color: #1a1a2e; margin-bottom: 8px; font-weight: 700; }
-.error-message { font-size: 14px; margin-bottom: 24px; }
+.error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+.error-title {
+  font-size: 20px;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.error-message {
+  font-size: 14px;
+  margin-bottom: 24px;
+}
 
 .retry-btn {
   background: #1a1a2e;
@@ -1518,7 +1692,10 @@ footer {
 /* ================================
    PAGINATION
    ================================ */
-.pagination { margin-top: 50px; text-align: center; }
+.pagination {
+  margin-top: 50px;
+  text-align: center;
+}
 
 .pagination-inner {
   display: inline-flex;
@@ -1527,7 +1704,7 @@ footer {
   background: white;
   padding: 12px 24px;
   border-radius: 30px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .page-btn {
@@ -1544,7 +1721,10 @@ footer {
   width: auto;
 }
 
-.page-btn:hover:not(:disabled) { background: #c9a84c; color: #1a1a2e; }
+.page-btn:hover:not(:disabled) {
+  background: #c9a84c;
+  color: #1a1a2e;
+}
 
 .page-btn:disabled {
   opacity: 0.3;
@@ -1573,20 +1753,33 @@ footer {
   border-radius: 8px;
   object-fit: cover;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .modal-info h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 22px;
   color: #1a1a2e;
   margin-bottom: 6px;
   padding-right: 0;
 }
 
-.modal-author   { color: #888; font-size: 14px; margin-bottom: 6px; }
-.modal-subjects { color: #c9a84c; font-size: 12px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
-.modal-downloads { color: #bbb; font-size: 12px; }
+.modal-author {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.modal-subjects {
+  color: #c9a84c;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.modal-downloads {
+  color: #bbb;
+  font-size: 12px;
+}
 
 .modal-actions {
   display: flex;
@@ -1612,7 +1805,10 @@ footer {
   color: #c9a84c;
 }
 
-.modal-read-btn:hover { background: #c9a84c; color: #1a1a2e; }
+.modal-read-btn:hover {
+  background: #c9a84c;
+  color: #1a1a2e;
+}
 
 .modal-gutenberg-btn {
   background: transparent;
@@ -1620,7 +1816,10 @@ footer {
   border: 1px solid #ddd;
 }
 
-.modal-gutenberg-btn:hover { border-color: #c9a84c; color: #c9a84c; }
+.modal-gutenberg-btn:hover {
+  border-color: #c9a84c;
+  color: #c9a84c;
+}
 
 .modal-loading {
   text-align: center;
@@ -1684,10 +1883,615 @@ footer {
   cursor: pointer;
   letter-spacing: 1px;
   transition: all 0.3s ease;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .nav-logout-btn:hover {
   border-color: #e74c3c;
   color: #e74c3c;
+}
+
+/* =========================================================
+   CHARACTER SECTION — FINAL PERFECT VERSION
+========================================================= */
+
+.character-section {
+  max-width: 1300px;
+  margin: 90px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.character-section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.6rem;
+  color: #1a1a2e;
+  margin-bottom: 12px;
+}
+
+.character-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 28px;
+  margin-top: 60px;
+}
+
+/* =========================================
+   CHARACTER VISUAL SYSTEM
+========================================= */
+
+.character-visual {
+  position: relative;
+
+  width: 100%;
+  height: 170px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  margin-bottom: 10px;
+}
+
+/* ALL EFFECTS LIVE HERE */
+
+.character-effects {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+/* avatar ABOVE effects */
+
+.character-avatar {
+  position: relative;
+  z-index: 5;
+
+  font-size: 82px;
+
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: floatAvatar 4s ease-in-out infinite;
+}
+.avatar-anchor {
+  position: relative;
+
+  width: 140px;
+  height: 140px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+/* content area */
+
+.character-content {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================
+     CARD BASE CHARACTER CARD — COMPACT STRUCTURE
+========================================= */
+
+.character-card {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  max-width: 270px;
+  min-height: 370px;
+  padding: 20px 20px 18px;
+
+  border-radius: 28px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  isolation: isolate;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  border: 1px solid transparent;
+}
+
+/* =========================================================
+   STATUS DOT
+========================================================= */
+
+.character-status {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+  border: 3px solid white;
+
+  z-index: 50;
+}
+
+.character-status.online {
+  background: #4ade80;
+  animation: pulseDot 2s infinite;
+}
+
+.character-status.offline {
+  background: #a8a8a8;
+}
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.character-card h3 {
+  position: relative;
+  z-index: 10;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  color: #1b1b38;
+
+  line-height: 1.2;
+
+  margin-bottom: 20px;
+}
+
+.character-card p {
+  position: relative;
+  z-index: 10;
+
+  max-width: 210px;
+
+  font-size: 0.92rem;
+  line-height: 1.7;
+
+  margin-bottom: 18px;
+
+  color: #727272;
+}
+
+.character-tag {
+  margin-top: auto;
+
+  font-size: 0.88rem;
+
+  padding-top: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  color: #d29b2d;
+}
+
+/* =========================================================
+   SCHOLAR CARD
+========================================================= */
+
+.scholar-card {
+  background: linear-gradient(145deg, #f6fffb, #ebfaf1);
+
+  border-color: rgba(100, 255, 180, 0.25);
+}
+
+.scholar-card:hover {
+  border-color: #63e7a9;
+}
+
+.magic-circle {
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(120, 255, 200, 0.18);
+
+  top: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  opacity: 0;
+
+  z-index: 1;
+}
+
+.scholar-card:hover .magic-circle {
+  opacity: 1;
+  animation: rotateCircle 12s linear infinite;
+}
+
+/* symbols */
+
+.sparkle,
+.moon-symbol {
+  position: absolute;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  z-index: 5;
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+.sparkle {
+  top: 8px;
+  font-size: 20px;
+  color: #73f8c8;
+}
+
+.moon-symbol {
+   top: 34px;
+  font-size: 22px;
+  color: #73f8c8;
+}
+
+.scholar-card::after {
+  content: "✧";
+
+  position: absolute;
+
+  top: 62px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 18px;
+
+  color: #73f8c8;
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+
+  z-index: 5;
+}
+
+.scholar-card:hover .sparkle,
+.scholar-card:hover .moon-symbol,
+.scholar-card:hover::after {
+  opacity: 1;
+}
+
+/* =========================================================
+   DETECTIVE
+========================================================= */
+
+.detective-card {
+  background: linear-gradient(145deg, #fff7e6, #f7ecd0);
+
+  border-color: rgba(255, 215, 120, 0.25);
+}
+
+.detective-card:hover {
+  border-color: #ffce59;
+}
+
+.fingerprint {
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  opacity: 0;
+
+  z-index: 1;
+
+  background: repeating-radial-gradient(
+    circle,
+    rgba(80, 60, 20, 0.14) 0px,
+    rgba(80, 60, 20, 0.14) 2px,
+    transparent 4px,
+    transparent 9px
+  );
+}
+
+.detective-card:hover .fingerprint {
+  opacity: 1;
+  animation: fingerprintPulse 4s ease infinite;
+}
+
+.scan-line {
+  position: absolute;
+
+  width: 84%;
+  height: 3px;
+
+    top: 50%;
+  left: 8%;
+
+  border-radius: 999px;
+
+  opacity: 0;
+
+  z-index: 5;
+transform: translateY(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.95),
+    transparent
+  );
+
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+}
+
+.detective-card:hover .scan-line {
+  opacity: 1;
+  animation: scanMove 3s linear infinite;
+}
+
+/* =========================================================
+   WANDERER
+========================================================= */
+
+.wander-particle {
+  position: absolute;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: rgba(170, 180, 255, 0.8);
+
+  filter: blur(1px);
+
+  opacity: 0;
+
+  z-index: 2;
+}
+
+.wanderer-card:hover .wander-particle {
+  animation: wanderFloat 4s ease-in-out infinite;
+  opacity: 1;
+}
+
+.particle-1 {
+  left: 30%;
+  top: 35%;
+}
+
+.particle-2 {
+  right: 28%;
+  top: 50%;
+  animation-delay: 1s;
+}
+
+.particle-3 {
+  left: 45%;
+  bottom: 25%;
+  animation-delay: 2s;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes floatAvatar {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+  transform: translateY(-5px);
+  }
+}
+
+@keyframes rotateCircle {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@keyframes fingerprintPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes scanMove {
+  0% {
+    transform: translateY(-24px);
+  }
+
+  50% {
+    transform: translateY(24px);
+  }
+
+  100% {
+    transform: translateY(-24px);
+  }
+}
+
+@keyframes pulseDot {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.35);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes wanderFloat {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: translateY(-12px);
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .character-section {
+    margin: 50px auto;
+    padding: 0 16px;
+  }
+
+  .character-preview-container {
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .character-card {
+    width: clamp(240px, 88vw, 320px);
+    min-height: 325px;
+    padding: 18px 18px 16px;
+
+    border-radius: 22px;
+  }
+
+  .character-visual {
+    height: 105px;
+
+    margin-bottom: 4px;
+  }
+
+  .character-avatar {
+    font-size: 64px;
+  }
+
+
+
+  .character-content {
+    width: 100%;
+  }
+
+  .character-card h3 {
+    font-size: 1.42rem;
+
+    line-height: 1.1;
+
+    margin-bottom: 10px;
+  }
+
+  .character-card p {
+    max-width: 230px;
+
+    margin: 0 auto 12px;
+
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .character-tag {
+    padding-top: 5px;
+
+    font-size: 0.78rem;
+
+    letter-spacing: 1.4px;
+  }
+
+  .character-status {
+    width: 11px;
+    height: 11px;
+
+    top: 15px;
+    right: 15px;
+  }
+
+  .character-card:hover {
+    transform: none;
+  }
+
+  .magic-circle {
+    width: 140px;
+    height: 140px;
+  }
+
+  .sparkle {
+    top: 18px;
+    font-size: 17px;
+  }
+
+  .moon-symbol {
+    top: 42px;
+    font-size: 18px;
+  }
+
+  .fingerprint {
+    width: 125px;
+    height: 125px;
+  }
+
+  .scan-line {
+    width: 76%;
+    left: 12%;
+  }
+}
+  @media (max-width: 768px) {
+  .avatar-anchor {
+    width: 105px;
+    height: 105px;
+  }
 }
