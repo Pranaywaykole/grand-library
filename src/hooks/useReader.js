@@ -88,6 +88,13 @@ export function useReader(bookId) {
     localStorage.setItem(`progress_${bookId}`, next)
   }
 }
+function goToPrev() {
+    if (currentPage > 0) {
+      const prev = currentPage - 1
+      setCurrentPage(prev)
+      localStorage.setItem(`progress_${bookId}`, prev)
+    }
+  }
   return {
     book, pages, currentPage,
     loading, error, loadingText,
@@ -134,6 +141,7 @@ function cleanText(raw) {
   if (end) text = text.slice(0, end.index)
   return text.replace(/\r\n/g, "\n").replace(/\n{4,}/g, "\n\n\n").trim()
 }
+/* ── Helper: split text into pages ── */
 
 function splitPages(text) {
   const pages   = []
